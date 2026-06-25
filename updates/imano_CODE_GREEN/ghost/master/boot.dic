@@ -1,0 +1,110 @@
+OnFirstBoot
+{
+	//If you add variables, make sure to initialize them here!
+	//Note - I haven't added anything about username or pronouns here because it's all handled by the SSP prefs
+	stroke = 0
+	LastTalk = ""
+	
+	"\1\s[10]\0\s[102]Hello?\w8 Helloooooo??\w8 Anyone recieving?\x\c/
+	\0\s[113]The Internet is still up right?\w8\w4\s[2]\_b[bln_sprite/surprise.png,0,0,--option=use_self_alpha,--option=fixed] They didn't dig out the cables during the lockdown too,\w4 did they?!\x\c/
+	\0\s[112].\w8.\w8.\w8.\w8\w8\w8\s[115]\_b[bln_sprite/surprise.png,0,0,--option=use_self_alpha,--option=fixed]Did I get the wrong comm. frequency?\x\c/
+	\0\s[2]Oh wait\w4 —\s[1] there you are!!\w8\s[111]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed] Sorry about that,\w4 I didn't realize the line was automatically opened,\w4 haha....\w8\s[122] still having trouble adjusting to all this new tech.\x\c/
+	\0\s[114]I'm trained and experienced,\w4 I swear!\w8\s[121] Don't give me that look,\w4 I passed all my tests with shining As.\x\c/
+	\0\s[107]\_b[bln_sprite/blank.png,0,0,--option=use_self_alpha,--option=fixed]But where are my manners?\w8\s[105] Nice to meet you,\w4 Officer %(username).\w8 You can call me Imano.\w8\s[120] I'm one of two NAORI agents stationed at Samizawa Girls' School.\w8\s[119] I don't think you were planned to be my assigned case officer,\w4\s[110] but I heard the higher-ups were having staff shortage issues as of late.\w8 Sooo......\x\c/
+	\0\s[126]And you don't get to know my first name because we've known each other for all of three seconds.\x\c/
+	\0\s[1]Anyway.\x\c/
+	\0\s[107]I'm assuming you've read the manual,\w4 so to speak?\w8\s[120] You're to oversee my activities,\w4 recieve and review my direct reports,\w4 and manage my mission objectives.\x\c/
+	\0\s[102]If I observe any anomalous incidents,\w4 I report to you.\w8 If anything in the area I cover needs survellience or sabotage,\w4 you call me.\w8\s[101] Simple enough.\x\c/
+	\0\s[1]Sound exciting?\w8\s[120] Don't get too riled up,\w4 nothing interesting has happened yet in my section.\w8\s[1] I'll report to you immediately if anything does though,\w4 rest assured.\x\c/
+	\0\s[4]\_b[bln_sprite/joy.png,0,0,--option=use_self_alpha,--option=fixed]But enough icebreaking!\w8\s[0] I'll get back to being a normal highschooler,\w4 and you get back to waiting for me."
+	
+}
+
+OnInitialize
+{
+	//If you want some variables to reset on boot, put them here. This event will happen even if you add other events like OnGhostChanged
+	//OnInitialize is a NOTIFY event! That means it cannot return scripts. This event is only meant for things like variable changes. See this page on Ukadoc for more info: https://ukagakadreamteam.github.io/ukadoc/manual/spec_shiori3.html
+	
+	//If you add new variables in updates, I recommend initializing them like so:
+	//if !ISVAR("NewVariable"); NewVariable = 0
+	//This means that it will only set the new variable if the user doesn't already have it, so that their variables don't get overwritten
+	
+	pokecount = 0
+	totalpets = 0
+	
+	if reference0 != "reload" //For things you want to reset EXCEPT when just reloading; a convenience for you the dev, basically
+	{
+		LastTalk = ""
+	}
+}
+
+OnBoot
+{
+	_temp = SHIORI3FW.UserBirthday
+	_user_birthday = "%(_temp[1])/%(_temp[2])" 
+	_today = "%(month)/%(day)" 
+	
+	"\1\s[10]\0\s[0]"
+	--
+	if _today == _user_birthday
+	{
+		"\0\s[107]I heard it's your birthday today,\w4 %(username)?\w8\s[106] Happy birthday."
+	}
+	elseif _today == "4/24" //imano birthday dialogue 
+	{
+		"\0\s[1]Hey Officer!\w8 You know what's special about today?\x\c\s[4]It's my birthday!"
+		--
+		"\n\n[half]/
+		\![*]\q[Give (gift),OnGhostBD1]\n/
+		\![*]\q[Congratulate,OnGhostBD2]\n/
+		\![*]\q[Dismiss,OnGhostBD3]\n/
+		\![*]\q[Do nothing,OnGhostBD4]"
+	}
+	elseif _today == "1/1" 
+	{
+		"\0\s[1]Do you celebrate new year's,\w4 Officer %(username)?\w8 I'd kick back with a cup of hot chocolate and watch a movie...\w8\s[120] Maybe stay up all night...\w8\s[117]If only I could go on actual holiday."
+	}
+	elseif _today == "12/25" 
+	{
+		"\0\s[4]\_b[bln_sprite/joy.png,0,0,--option=use_self_alpha,--option=fixed]Merry Christmas!!!\w8 I'll be joining the third year boys in an eggnog drinking competition,\w4 wanna join?"
+	}
+	else //Normal boot
+	{
+		"\0\s[4]Connection established!\w8\s[1] Nothing went wrong while I was gone,\w4 I hope?"
+		"\0\s[120]Agent Imano-chan at your service!"
+		"\0\s[105]Miss me?"
+		"\0\s[1]The signal's good today.\w8\s[4] That's always a good sign!"
+	}
+}
+
+//birthday choices!! yay!!
+
+OnGhostBD1 //for give gift option
+{
+	"\0\s[2]\_b[bln_sprite/surprise.png,0,0,--option=use_self_alpha,--option=fixed]Woah,\w4 wait,\w4 for real!?\w8\s[111] For a second I really thought you wouldn't care.\w4.\w4.\w4\w8\w8\n.\w4.\w4.\w4.\w4.\w4.\w4\n\s[116].\w4.\w4.\w4Thank you..."
+}
+
+OnGhostBD2 //for congrat option
+{
+	"\0\s[127]Thank you thank you!"
+}
+
+OnGhostBD3 //for ignore option
+{
+	"\0\s[122]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed]Huh?!\w8 That's mean..."
+}
+
+OnGhostBD4 //for do nothing
+{
+	"\0\s[102]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed]No reaction?\w8\w8\s[109] ...Alright."
+}
+
+//birthday choices end
+
+OnClose
+{
+	"\0\s[1]...Off to take a break?\w8\s[107] I'll be waiting on the line."
+	"\0\s[107]See you later, Officer!"
+	--
+	"\w8\w8\-" //This is what makes the ghost close (after a short pause), do not remove the \- , and MAKE SURE you don't use a \e before this point or it won't work
+}

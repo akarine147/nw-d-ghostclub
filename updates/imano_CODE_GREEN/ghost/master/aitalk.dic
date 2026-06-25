@@ -1,0 +1,104 @@
+OnAiTalk
+{
+	if CHAIN.IDName != ""
+	{
+		LastTalk = ChainTalk
+	}
+	else
+	{
+		LastTalk = RandomTalk
+	}
+	LastTalk
+}
+
+RandomTalk : nonoverlap_pool
+{
+	//general small talk
+	"\0\s[1].\w8.\w8.\w8.\w8\w8\w8\s[118]I've forgotten what I was going to say, damn it."
+	"\0\s[120]\_b[bln_sprite/joy.png,0,0,--option=use_self_alpha,--option=fixed]Anything matcha flavored is delightful...\w8\s[125]I get dreamy just thinking about it..."
+	"\0\s[123]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed]...I really hate calculus."
+	
+	//worldbuilding + characterizaation info containing
+	"\0\s[101]If you want to know what's been going on,\w4 it's just the usual.\w8 Ton of classes,\w4 weird events students host,\w4 and wayyyy too much gossip...\w8\s[123]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed] You'd think their consciousnesses being altered would make them less normal,\w4 but apparently not.\w8\s[113] They're the exact same as the highschoolers outside the lockdown zone...\w8\w8\w8\w8\n\n[half]\s[117]I think anyway,\w4 I didn't recieve my education in a public school."
+	"\0\s[113]I saw a faux at the gates this morning.\w8\s[122]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed] Considering the amount of them in this town,\w4 it's probably nothing to worry about.\w8\s[112] Still,\w4 I hope the researchers are faster about analyzing them.\w8 It's been \f[italic,true]months\f[italic,false] since we first saw one and we still know next to nothing about how they work."
+	"\0\s[122]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed]I don't think I actually look that young...\w8\s[118] I know that's why I'm here,\w4 but it's not like I'm older than the third years.\w8\s[2]\_b[bln_sprite/surprise.png,0,0,--option=use_self_alpha,--option=fixed] Can you believe the girls say I look like a first year?\w8 Really?!!\w8\w8\n\n[half]\s[115] ...Is it my height?"
+	"\0\s[117]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed]This was months ago and I've already submitted a report about it,\w4 but I just can't forget the time the occult club actually summoned a Graveseeker.\w8\s[110] Granted,\w4 it was a coincidence;\w8 the ritual was as fake as any ritual you'd see outside the zone,\w4 and the thing just happened to phase out of the floor as they got done with it.\w8\s[123] But it \f[italic,true]was \f[italic,false]creepy."
+	"\0\s[110]Liking cats was originally a part of my persona here,\w4 but the more I keep it up the more I actually start to like cats...\w8\s[117]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed] Officer,\w4 does that count as a failure in my duties...?"
+	
+	//wordgroups containing
+	"\0\s[2]\_b[bln_sprite/surprise.png,0,0,--option=use_self_alpha,--option=fixed]Did you know a new %(establishments) opened in the town recently?\w8\s[128] I didn't even notice!"
+	"\0\s[112]Incident report...\w8 %(incidents).\w8\n\n[half]I'll file up an official report in a second."
+	"\0\s[109]It's %(weather) outside today.\w8\s[124]\_b[bln_sprite/joy.png,0,0,--option=use_self_alpha,--option=fixed] A %(drinks) would go really well with that,\w4 don't you think?"
+	
+	//omake
+	"\0\s[110]-ub?\w8 I don't know,\w4 they're always up to some...\w8\s[2]\_b[bln_sprite/surprise.png,0,0,--option=use_self_alpha,--option=fixed] W-Why is this line open?!"
+	
+	//choice dialogue
+	"\0\s[1]Hey Officer,\w4 let's play a game.\w8 Guess what my favorite color is.\n\n[half]\![*]\q[Green,OnColor1]\n\![*]\q[Red,OnColor2]\n\![*]\q[Blue,OnColor3]\n\![*]\q[Black,OnColor4]"
+}
+
+//color choice dialogue start
+
+OnColor1
+{
+	"\0\s[108]\_b[bln_sprite/joy.png,0,0,--option=use_self_alpha,--option=fixed]That's right!\w8 How did you know?"
+}
+
+OnColor2
+{
+	"\0\s[104]I don't fall in love with the color of my own eyes,\w4 you know.\w8 Unlike...\w4\s[107]\f[italic,true]some\w4\f[italic,default]\s[120] people."
+}
+
+OnColor3
+{
+	"\0\s[3]\_b[bln_sprite/disgust.png,0,0,--option=use_self_alpha,--option=fixed]Eugh...\w8\s[122] such a neutral and unoffending choice..."
+}
+
+OnColor4
+{
+	"\0\s[4]\_b[bln_sprite/joy.png,0,0,--option=use_self_alpha,--option=fixed]Ooh,\w4 close.\w8\s[107] I look super good in black,\w4 but it's not quite my favorite one."
+}
+
+//color choice dialogue end
+
+//time announcement dialogue start
+//maybe write custom function for this in the future
+
+OnHourTimeSignal{
+	"\0\s[0]"
+	--
+	if hour == 0
+	{
+		"\0\s[120]12:00...\w8 The hours have rolled on to a new day...\w4 t\w2i\w2c\w2k\w2 t\w2o\w2c\w2k\w2..."
+	}
+	elseif hour == 4
+	{
+		"\0\s[2]\_b[bln_sprite/surprise.png,0,0,--option=use_self_alpha,--option=fixed]It's 4:00?!! Why are you still awake, %(username)!!"
+	}
+	elseif hour == 5
+	{
+		"\0\s[110]It's 5:00.\w8 You might see the sun rising if you go outside right now.\w8\s[109] Or look out the window."
+	}
+	elseif hour == 8
+	{
+		"\0\s[4]It's 8:00!\w8 Work hours have begun, Officer!"
+	}
+	elseif hour == 12
+	{
+		"\0\s[107]I would invite you out to lunch,\w4 Officer,\w4 buuuuuut...\w8\s[120] someone's already asked me out.\w8\s[125] Ehe~\w8 maybe next time. "
+	}
+	elseif hour == 15
+	{
+		"\0\s[1]Back when I was still in training,\w4 I used to have a long break at this hour.\w8\s[120] Training was rigorous,\w4 sure,\w4 but who cares about that when you have afternoon tea?\w8\w8\n\n[half]\s[101]Oh,\w4 the time?\w8 It's 15:00."
+	}
+	elseif hour == 22
+	{
+		"\0\s[101]22:00...\w8\s[2]\_b[bln_sprite/surprise.png,0,0,--option=use_self_alpha,--option=fixed] Did you know some people go to bed at this hour?\w8\s[104] How weird, right??!"
+	}
+	else 
+	{
+		"\0\s[1]It's %(hour):00, Officer. Just thought I'd let you know."
+	}
+}
+
+//time announcement dialogue end

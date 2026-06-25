@@ -1,0 +1,96 @@
+//Separate from the menus because you could put other interactions here, like poking or booping or punching or asking about various hotspots
+OnMouseDoubleClick
+{
+	if reference5 == 0 //reference5 is the mouse button being clicked, in this case a left click
+	{
+		//reference3 is which character is being clicked
+		//If you want to add double click interactions, reference4 will be the name of the hitbox the mouse is over
+		if reference3 == 0
+		{
+			MouseDoubleClickSakura
+		}
+		else
+		{
+			OnKeroMenu
+		}
+	}
+}
+
+MouseDoubleClickSakura
+{
+	if reference4 == "head"
+	{
+		"\0\s[120]You like my hat?\w8 It's limited edition."
+		"\0\s[117]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed]The ears don't move,\w4 if that's what you're wondering."
+	}
+	elseif reference4 == "face"
+	{
+		pokecount++
+		if pokecount >= 10
+		{
+			"\0\s[123]\_b[bln_sprite/angy.png,0,0,--option=use_self_alpha,--option=fixed]......"
+		}
+		else
+		{
+			"\0\s[117]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed]I don't know what you're poking my holographic projection for,\w4 but I do exist.\w8\s[118] I'm real.\w8 If you're so caught up about it,\w4 we can meet at Headquarters over the weekend\s[105] if you'd like?"
+			"\0\s[115]\_b[bln_sprite/angy.png,0,0,--option=use_self_alpha,--option=fixed]Is this hazing?\w8 I'll report you to Command if this is hazing."
+			"\0\s[118]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed]It's a digital avatar,\w4 Officer %(username).\w8 You won't get any sensation of touch from it."
+			"\0\s[122]\_b[bln_sprite/angy.png,0,0,--option=use_self_alpha,--option=fixed]Do you want to say goodbye to your salary???"
+			"\0\s[128]\_b[bln_sprite/angy.png,0,0,--option=use_self_alpha,--option=fixed]I'm going to stop reacting if you think it's fun to poke my avatar and make me say something like a toy."
+		}
+	}
+	elseif reference4 == "phone"
+	{
+		"\0\s[110]This?\w8 It's not actually an old phone,\w4 it just looks like one.\w8 High tech and all,\w4 has the built-in avatar projector that I'm using right now,\w4 a target tracker,\w4 audio recorder,\w4 signal disruptor,\w4 thing that intercepts radio signals,\w4 encryption,\w4 decryption,\w4 scanning,\w4 4K camera with heat and night vision and 30x zoom...\w8\s[122]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed] Maybe I made some of that up but it has way more functions than that,\w4 you could ask the higher-ups.\w8\n\n[half]\s[4]\_b[bln_sprite/joy.png,0,0,--option=use_self_alpha,--option=fixed] And it looks retro as hell,\w4 so pretty cool!" 
+	}
+	else 
+	{
+		OnSakuraMenu
+	}
+}
+
+OnMouseMove
+{
+	if reference4 != ""
+	{
+		stroke++
+		
+		if stroke % 40 == 0
+		{
+			totalpets += 1
+			if reference3 == 0; OnMouseMove.Sakura
+			else; OnMouseMove.Kero
+		}
+	}
+}
+
+OnMouseMove.Sakura
+{
+	if reference4 == "head"
+	{
+		if totalpets >= 20
+		{
+			"\0\s[117]\_b[bln_sprite/angy.png,0,0,--option=use_self_alpha,--option=fixed]...I'll just let you have your fun."
+		}
+		else
+		{
+			"\0\s[129]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed]What?\w8 What are you doing??"
+			"\0\s[122]\_b[bln_sprite/angy.png,0,0,--option=use_self_alpha,--option=fixed]You think I'm some desktop toy?"
+			"\0\s[117]\_b[bln_sprite/help.png,0,0,--option=use_self_alpha,--option=fixed]I can't feel it if you do that.\w8 I told you,\w4 it's a digital avatar.\w8 You should know that."
+			"\0\s[103]You know this behavior is kind of suspicious.\w8 Maybe I \f[italic,true]should\f[italic,false] report you after all..."
+		}
+	}
+}
+
+// OnMouseMove.Kero
+// {
+	// if reference4 == "head"
+	// {
+		// "\1\s[10]Petting..."
+	// }
+// }
+
+OnMouseLeaveAll
+{
+	stroke = 0
+}

@@ -1,0 +1,6 @@
+charset,UTF-8
+type,ghost
+
+name,Imano⇒ CODE: GREEN
+directory,imano_CODE_GREEN
+balloon.directory,imn_messenger

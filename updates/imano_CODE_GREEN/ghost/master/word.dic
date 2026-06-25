@@ -1,0 +1,93 @@
+//word groups !! for use in aitalk
+
+establishments
+{
+	"coffee shop"
+	"bakery"
+	"\_a[https://www.youtube.com/watch?v=iNbtAOS_qZM]hardware store\_a"
+	"restaurant"
+	"CD shop"
+	"clothing store"
+	"lemonade stand"
+	"supermarket"
+	"lost and found center"
+	"maid cafe"
+	"internet cafe"
+	"men's contemporary fashion shop"
+	"experimental tea establishment"
+	"boba shop"
+	"cat cafe"
+	"dog cafe"
+	"fish cafe"
+	"barbershop"
+	"electronics store"
+	"convenience store"
+	"perfume shop"
+	"candy store"
+	"theater"
+	"carrier pigeon service center"
+	"stupid tourist attraction"
+	"ceramics shop"
+	"sensory deprivation meditation chamber"
+	"store that specifically sells candy apples"
+}
+
+weather
+{
+	"sunny"
+	"cloudy"
+	"raining like hell"
+	"cloudless"
+	"weirdly dark"
+	"stormy"
+	"storming but with huge electrical bursts"
+}
+
+drinks
+{
+	"strawberry milk tea"
+	"mango tea"
+	"matcha"
+	"lemonade"
+	"strawberry lemonade"
+	"can of cola"
+	"bottle of ramune"
+	"bottle of calpis"
+	"royal milk tea"
+	"cherry blossom tea"
+	"melon soda"
+	"coffee"
+	"cold brew"
+	"canned coffee"
+	"cafe au lait"
+}
+
+incidents
+{
+	"previously undocumented aerial light phenomena observed in sector %(sectors). Footage recorded and sent for analysis"
+	"known anomalous aerial light phenomena observed in sector %(sectors). Footage recorded and sent for analysis"
+	"spontaneous citizen disappearance in sector %(sectors), returned after %(time). Personal file sent for documentation. No changes observed in appearance or otherwise"
+	"town-wide environmental hue rotation, time frame %(time). Footage recorded and sent for analysis"
+	"the sea just... turned red? Footage recorded and sent for analysis. A sample was acquired and will be delivered via dead drop at the zone border within 2 days"
+}
+
+time
+{
+	"5 days"
+	"7 hours"
+	"approximately 2 seconds"
+	"24 hours"
+	"48 hours"
+	"36 hours"
+	"30 seconds"
+	"5 seconds"
+}
+
+sectors
+{
+	"30A"
+	"4D"
+	"37X"
+	"10B"
+	"SP-ALPHA-8"
+}
